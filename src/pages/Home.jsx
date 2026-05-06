@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import CourseCard from '../components/CourseCard';
 import Footer from '../components/Footer';
-import newsletterBg from '../assets/newslatter.jpg';
+import newsletterBg from '../assets/Newslatter.jpg';
 
 const Home = () => {
   const titles = [
