@@ -23,7 +23,7 @@ const CourseCard = ({ image, title, desc, instructor, role, instImage, price, ra
             <div className="flex items-center">
             <span className="text-yellow-400">⭐⭐⭐⭐⭐</span>
                {/* Gunakan variabel rating di sini agar tidak error */}
-              \<span className="text-sm font-medium text-gray-600 ml-1">{rating}</span>
+              <span className="text-sm font-medium text-gray-600 ml-1">{rating}</span>
             </div>
             <span className="text-xs text-gray-400">({reviews})</span>
           </div>

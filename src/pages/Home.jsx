@@ -32,25 +32,25 @@ const Home = () => {
     /* WRAPPER UTAMA: bg-color, min-h, dan font */
     <div className="min-h-screen bg-[#FFFDF5] opacity-100 rotate-0 font-sans">
       
-      <div className="max-w-[1440px] mx-auto pb-[64px] px-[120px] flex flex-col gap-[64px]">
+      <div className="max-w-[1440px] mx-auto pb-[64px] px-4 sm:px-6 md:px-8 lg:px-[120px] flex flex-col gap-[64px]">
         
         <Navbar />
 
         {/* HERO SECTION: h-400, rounded-10 */}
         <section 
-          className="relative w-full h-[400px] flex items-center justify-center text-center pt-[82px] pr-[140px] pb-[64px] pl-[140px] bg-cover bg-center rounded-[10px] overflow-hidden" 
+          className="relative w-full h-[400px] flex items-center justify-center text-center pt-[82px] px-6 sm:px-10 md:px-[140px] pb-[64px] bg-cover bg-center rounded-[10px] overflow-hidden" 
           style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200')`
           }}
         >
           <div className="max-w-3xl text-white flex flex-col items-center gap-[24px]">
-            <h1 className="text-3xl md:text-5xl font-bold font-poppins leading-tight">
+            <h1 className="text-[20px] md:text-[24px] font-bold font-poppins leading-[110%] tracking-[0%] text-center text-white">
               Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video Interaktif!
             </h1>
             <p className="text-gray-200 font-dmsans text-[16px]">
-              Temukan ilmu baru yang menarik dan mendalam melalui koleksi video pembelajaran berkualitas tinggi.
+              Temukan ilmu baru yang menarik dan mendalam melalui koleksi video pembelajaran berkualitas tinggi. Tidak hanya itu, Anda juga dapat berpartisipasi dalam latihan interaktif yang akan meningkatkan pemahaman Anda.
             </p>
-            <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-[6px] font-bold transition-colors">
+            <button className="w-[280px] h-[40px] bg-[#3ECF4C] hover:bg-green-600 text-white font-bold font-dmsans text-[14px] rounded-[10px] opacity-100 rotate-0 transition-colors flex items-center justify-center">
               Temukan Video Course untuk Dipelajari
             </button>
           </div>
