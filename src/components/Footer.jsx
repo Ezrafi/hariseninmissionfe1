@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="md:col-span-5">
             <img src={logo} alt="logo" className="h-[24px] mb-6" />
             <h3 className="text-lg font-bold text-gray-800 mb-2">
-              Gali Potensi Anda Melalui Pembelajaran Video di hariesok.id!
+              Gali Potensi Anda Melalui Pembelajaran Video di VideoBelajar.id!
             </h3>
             <p className="text-gray-500 text-sm leading-relaxed mb-4">
               Jl. Usman Effendi No. 50 Lowokwaru, Malang<br />
