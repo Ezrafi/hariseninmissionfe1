@@ -26,14 +26,21 @@ src/
 │   ├── LoginForm.jsx
 │   ├── Navbar.jsx
 │   └── RegisterForm.jsx
+├── layouts/
+│   └── Authenticated.jsx        # Layout wrapper with Navbar & Footer
 ├── pages/
-│   ├── Home.jsx
+│   ├── Home.jsx                 # Course listing with CRUD (Add/Delete)
 │   ├── Login.jsx
 │   └── Register.jsx
 ├── App.jsx
 ├── index.css
 └── main.jsx
 ```
+
+## Key Features
+
+- **Layout System**: `Authenticated` layout wraps pages that require Navbar/Footer, keeping auth pages (Login/Register) clean and separate.
+- **CRUD Operations**: Home page implements Create (add course) and Delete (remove course) functionality using React `useState`, with unique IDs via `Date.now()`. Data is initialized with mock course data.
 
 ## Getting Started
 
