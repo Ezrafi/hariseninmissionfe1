@@ -50,14 +50,14 @@ const Navbar = () => {
                 />
               </button>
 
-              {/* DROPDOWN MENU (Sesuai Spesifikasi Figma) */}
+              {/* DROPDOWN MENU */}
               {dropdownOpen && (
                 <div 
                   className="absolute right-0 mt-2 w-[200px] h-[226px] bg-white border border-gray-100 shadow-xl rounded-b-[4px] py-[4px] z-50 opacity-100 rotate-0"
                 >
-                  {profileMenu.map((item, index) => (
+                  {profileMenu.map((item) => (
                     <button
-                      key={index}
+                      key={item.path}
                       onClick={() => {
                         navigate(item.path);
                         setDropdownOpen(false);
@@ -100,9 +100,9 @@ const Navbar = () => {
         <div className="md:hidden bg-white border-t border-gray-100 absolute left-0 right-0 top-20 z-40 shadow-xl">
           <div className="px-6 py-6 flex flex-col gap-4">
             <h3 className="text-sm font-bold text-gray-800 mb-2">Kategori</h3>
-            {categories.map((cat, i) => (
+            {categories.map((cat) => (
               <button 
-                key={i}
+                key={cat}
                 className="text-left text-gray-600 text-sm hover:text-green-600 py-3 border-b border-gray-50 last:border-b-0"
                 onClick={() => setMenuOpen(false)}
               >

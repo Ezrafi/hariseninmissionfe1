@@ -3,6 +3,7 @@ import Authenticated from './layouts/Authenticated'; // Import Layout baru
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CourseUpdate from './pages/CourseUpdate';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* Halaman yang TIDAK butuh Navbar/Footer utama (Auth page) */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/courses/edit/:id" element={<CourseUpdate />} />
       </Routes>
     </Router>
   );
