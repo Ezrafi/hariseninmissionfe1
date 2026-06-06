@@ -89,10 +89,11 @@ const CourseUpdate = () => {
           { label: 'Jumlah Review', name: 'reviews' },
         ].map(({ label, name }) => (
           <div key={name}>
-            <label className="block text-sm font-bold text-gray-700 font-dmsans mb-1">
+            <label htmlFor={name} className="block text-sm font-bold text-gray-700 font-dmsans mb-1">
               {label}
             </label>
             <input
+              id={name}
               type="text"
               name={name}
               value={form[name] || ''}
@@ -103,10 +104,11 @@ const CourseUpdate = () => {
         ))}
 
         <div>
-          <label className="block text-sm font-bold text-gray-700 font-dmsans mb-1">
+          <label htmlFor="desc" className="block text-sm font-bold text-gray-700 font-dmsans mb-1">
             Deskripsi
           </label>
           <textarea
+            id="desc"
             name="desc"
             value={form.desc || ''}
             onChange={handleChange}
