@@ -8,14 +8,8 @@ const CourseCard = ({
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    // Opsi A: kirim seluruh data lewat navigate state
-    navigate(`/courses/edit/${id}`, {
-      state: {
-        id, image, title, desc, instructor, role,
-        instImage, price, rating, reviews
-      }
-    });
-  };
+  navigate(`/courses/edit/${id}`);
+};
 
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow relative">

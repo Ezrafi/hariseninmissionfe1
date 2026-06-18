@@ -1,23 +1,23 @@
-liat website di https://learnflix-lime.vercel.app/
-
 # Mission FE1
 
-Frontend application built with React and Vite, featuring authentication pages (Login, Register) and a Home page with course listings.
+Frontend application built with React and Vite — an online learning platform featuring authentication (Login/Register), course management with CRUD operations, and a responsive UI.
 
 ## Tech Stack
 
-- **React** 19 - UI library
-- **Vite** - Build tool and dev server
-- **React Router DOM** - Client-side routing
-- **Tailwind CSS** - Utility-first CSS framework
-- **Lucide React** - Icon library
-- **React Compiler** - Automatic performance optimization
+- **React** 19 — UI library
+- **Vite** — Build tool and dev server
+- **React Router DOM** — Client-side routing
+- **Tailwind CSS** — Utility-first CSS framework
+- **Lucide React** — Icon library
+- **Axios** — HTTP client for API requests
+- **React Compiler** — Automatic performance optimization
 
 ## Project Structure
 
 ```
 src/
-├── components/
+├── assets/                      # Static images (logo, hero, newsletter, etc.)
+├── components/                  # Reusable UI components
 │   ├── Button.jsx
 │   ├── CourseCard.jsx
 │   ├── Footer.jsx
@@ -29,18 +29,32 @@ src/
 ├── layouts/
 │   └── Authenticated.jsx        # Layout wrapper with Navbar & Footer
 ├── pages/
-│   ├── Home.jsx                 # Course listing with CRUD (Add/Delete)
+│   ├── Home.jsx                 # Course listing with Add/Delete
+│   ├── CourseUpdate.jsx         # Edit course page (/courses/edit/:id)
 │   ├── Login.jsx
 │   └── Register.jsx
-├── App.jsx
-├── index.css
-└── main.jsx
+├── services/
+│   └── api/
+│       └── courseService.js     # Axios client for MockAPI CRUD operations
+├── App.jsx                      # Root component with React Router routes
+├── index.css                    # Tailwind directives + Google Fonts
+└── main.jsx                     # Vite entry point
 ```
 
 ## Key Features
 
 - **Layout System**: `Authenticated` layout wraps pages that require Navbar/Footer, keeping auth pages (Login/Register) clean and separate.
-- **CRUD Operations**: Home page implements Create (add course) and Delete (remove course) functionality using React `useState`, with unique IDs via `Date.now()`. Data is initialized with mock course data.
+- **Full CRUD via MockAPI**: Home page fetches, creates, and deletes courses; `CourseUpdate` page handles editing — all through an Axios service layer backed by [MockAPI.io](https://mockapi.io).
+- **Environment Configuration**: API base URL is configured via `VITE_API_URL` in `.env` file.
+- **Responsive Design**: Fully responsive UI built with Tailwind CSS, including mobile navigation with hamburger menu.
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_URL=https://6a115ed23e35d0f37ee332ad.mockapi.io/courses
+```
 
 ## Getting Started
 
