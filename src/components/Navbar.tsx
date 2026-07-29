@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { Menu, X, User, BookOpen, CreditCard, LogOut } from 'lucide-react';
+import useAuthStore from '../store/authStore';
+
+interface ProfileMenuItem {
+  label: string;
+  icon: React.ReactNode;
+  path: string;
+}
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { logout } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false); // State untuk dropdown profil
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const categories = ['Digital & Teknologi', 'Pemasaran', 'Manajemen Bisnis', 'Pengembangan Diri', 'Desain'];
 
-  // Data untuk menu profil
-  const profileMenu = [
+  const profileMenu: ProfileMenuItem[] = [
     { label: 'Profil Saya', icon: <User size={18} />, path: '/profile' },
     { label: 'Kelas Saya', icon: <BookOpen size={18} />, path: '/my-classes' },
     { label: 'Pesanan Saya', icon: <CreditCard size={18} />, path: '/orders' },
@@ -21,21 +28,17 @@ const Navbar = () => {
     <nav className="w-full h-20 bg-white border-b border-gray-100 sticky top-0 z-50 flex items-center justify-center">
       <div className="w-full max-w-[1440px] h-full px-6 md:px-[120px] flex items-center justify-between">
         
-        {/* SISI KIRI: Logo */}
         <Link to="/" className="flex items-center">
           <img src={logo} alt="video belajar" className="h-[24px] w-auto object-contain" />
         </Link>
 
-        {/* SISI KANAN */}
         <div className="flex items-center">
           
-          {/* Navigasi Desktop */}
           <div className="hidden md:flex items-center gap-6 mr-6">
             <span className="text-gray-600 text-sm font-medium cursor-pointer hover:text-green-600 transition-colors font-dmsans">
               Kategori
             </span>
 
-            {/* Avatar & Dropdown Container */}
             <div className="relative">
               <button
                 type="button"
@@ -50,7 +53,6 @@ const Navbar = () => {
                 />
               </button>
 
-              {/* DROPDOWN MENU */}
               {dropdownOpen && (
                 <div 
                   className="absolute right-0 mt-2 w-[200px] h-[226px] bg-white border border-gray-100 shadow-xl rounded-b-[4px] py-[4px] z-50 opacity-100 rotate-0"
@@ -69,10 +71,10 @@ const Navbar = () => {
                     </button>
                   ))}
 
-                  {/* Tombol Keluar */}
                   <button
                     onClick={() => {
                       setDropdownOpen(false);
+                      logout();
                       navigate('/login');
                     }}
                     className="w-[200px] h-[54px] px-[12px] py-[16px] flex items-center gap-[5px] text-red-500 hover:bg-red-50 transition-colors font-dmsans text-sm opacity-100"
@@ -85,7 +87,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Tombol Burger Mobile */}
           <button 
             className="md:hidden p-2 text-gray-600 hover:text-green-600 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -95,7 +96,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown (Kategori & Logout Mobile) */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 absolute left-0 right-0 top-20 z-40 shadow-xl">
           <div className="px-6 py-6 flex flex-col gap-4">

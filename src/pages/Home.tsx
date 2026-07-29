@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import CourseCard from '../components/CourseCard';
 import newsletterBg from '../assets/newsletter.jpg';
 import useCourseStore from '../store/courseStore';
+import type { CourseFormData } from '../types';
 
 const Home = () => {
-  //  Ambil state dan actions dari store
   const { courses, loading, error, fetchCourses, addCourse, removeCourse } = useCourseStore();
 
-  //  Fetch courses saat pertama load
   useEffect(() => {
     fetchCourses();
   }, [fetchCourses]);
 
   const handleAddCourse = () => {
-    addCourse({
+    const data: CourseFormData = {
       image: `https://picsum.photos/400/250?random=${Date.now()}`,
       title: "Kursus Baru Hariesok",
       desc: "Mulai transformasi dengan instruktur profesional...",
@@ -23,7 +22,8 @@ const Home = () => {
       price: "Rp 500K",
       rating: "5.0",
       reviews: "10"
-    });
+    };
+    addCourse(data);
   };
 
   if (loading) return (

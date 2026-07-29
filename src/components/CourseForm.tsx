@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { CourseFormProps } from '../types';
 
 const FIELDS = [
   { label: 'Judul Kursus', name: 'title' },
@@ -8,12 +9,10 @@ const FIELDS = [
   { label: 'Jumlah Review', name: 'reviews' },
 ];
 
-const CourseForm = ({ initialData, onSubmit, onCancel, submitting }) => {
-  //  Aman — hanya jalan sekali saat mount, karena `key` di parent
-  // memaksa remount setiap initialData (course) berbeda
+const CourseForm = ({ initialData, onSubmit, onCancel, submitting }: CourseFormProps) => {
   const [form, setForm] = useState(initialData);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -31,7 +30,7 @@ const CourseForm = ({ initialData, onSubmit, onCancel, submitting }) => {
           <input
             type="text"
             name={name}
-            value={form[name] || ''}
+            value={(form as Record<string, string>)[name] || ''}
             onChange={handleChange}
             className="w-full border border-gray-200 rounded-[10px] px-4 py-2 font-dmsans text-sm outline-none focus:border-[#3ECF4C] transition-colors"
           />

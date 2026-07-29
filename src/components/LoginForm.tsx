@@ -1,16 +1,18 @@
-import React from 'react';
 import Input from './Input';
 import Button from './Button';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import type { LoginFormProps } from '../types';
 
-const LoginForm = ({ onSubmit, onNavigateToRegister, showPassword, setShowPassword }) => {
+const LoginForm = ({ onSubmit, onNavigateToRegister, showPassword, setShowPassword, email, onEmailChange, password, onPasswordChange, loading }: LoginFormProps) => {
 return (
     <form className="flex flex-col gap-[16px] font-dmsans" onSubmit={onSubmit}>
     <Input 
         label="E-Mail" 
         type="email" 
         placeholder="john.doe@gmail.com" 
-        required 
+        required
+        value={email}
+        onChange={(e) => onEmailChange(e.target.value)}
     />
 
     <div className="relative font-dmsans">
@@ -18,7 +20,9 @@ return (
         label="Kata Sandi" 
         type={showPassword ? "text" : "password"}
         placeholder="**********" 
-        required 
+        required
+        value={password}
+        onChange={(e) => onPasswordChange(e.target.value)}
         icon={showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />} 
         onIconClick={() => setShowPassword(!showPassword)}
         />
@@ -30,8 +34,10 @@ return (
     </div>
 
     <div className="flex flex-col gap-3 mt-[8px]">
-        <Button variant="primary" type="submit" className="w-full">Masuk</Button>
-        <Button variant="secondary" className="w-full" onClick={onNavigateToRegister}>
+        <Button variant="primary" type="submit" className="w-full" disabled={loading}>
+        {loading ? 'Memuat...' : 'Masuk'}
+        </Button>
+        <Button variant="secondary" className="w-full" onClick={onNavigateToRegister} disabled={loading}>
         Daftar
         </Button>
     </div>
@@ -45,7 +51,7 @@ return (
         </div>
     </div>
 
-    <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+    <Button variant="outline" className="w-full flex items-center justify-center gap-2" disabled={loading}>
         <img 
         src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
         alt="google" 

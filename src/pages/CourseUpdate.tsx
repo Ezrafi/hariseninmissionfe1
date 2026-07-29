@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useCourseStore from '../store/courseStore';
 import CourseForm from '../components/CourseForm';
+import type { CourseFormData } from '../types';
 
 const CourseUpdate = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
   const { selectedCourse, loading, error, fetchCourseById, editCourse } = useCourseStore();
@@ -13,7 +14,7 @@ const CourseUpdate = () => {
     fetchCourseById(id);
   }, [id, fetchCourseById]);
 
-  const handleSubmit = async (formData) => {
+  const handleSubmit = async (formData: CourseFormData) => {
     await editCourse(id, formData);
     navigate(-1);
   };
@@ -36,7 +37,6 @@ const CourseUpdate = () => {
     </div>
   );
 
-  //  Belum ada data sama sekali (misal masih fetching pertama kali)
   if (!selectedCourse) return null;
 
   return (
@@ -46,8 +46,6 @@ const CourseUpdate = () => {
         ID Kursus: <span className="font-mono text-sm">{id}</span>
       </p>
 
-      {/*  key memaksa remount CourseForm setiap selectedCourse.id berubah,
-          jadi useState di dalamnya aman di-initialize dari props sekali saja */}
       <CourseForm
         key={selectedCourse.id}
         initialData={selectedCourse}

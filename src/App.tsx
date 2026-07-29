@@ -1,29 +1,33 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Authenticated from './layouts/Authenticated'; // Import Layout baru
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Authenticated from './layouts/Authenticated';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CourseUpdate from './pages/CourseUpdate';
+import useAuthStore from './store/authStore';
 
 function App() {
+  const checkAuth = useAuthStore((s) => s.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
   return (
     <Router>
       <Routes>
-        {/* Halaman yang butuh Navbar & Footer (Login required) */}
         <Route element={<Authenticated />}>
           <Route path="/" element={<Home />} />
-          {/* Kamu bisa tambah route lain di sini, misal: */}
-          {/* <Route path="/my-course" element={<MyCourse />} /> */}
+          <Route path="/courses/edit/:id" element={<CourseUpdate />} />
         </Route>
 
-        {/* Halaman yang TIDAK butuh Navbar/Footer utama (Auth page) */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/courses/edit/:id" element={<CourseUpdate />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-

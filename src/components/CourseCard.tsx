@@ -1,10 +1,10 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import type { CourseCardProps } from '../types';
 
 const CourseCard = ({
   id, image, title, desc, instructor, role,
   instImage, price, rating, reviews, onDelete
-}) => {
+}: CourseCardProps) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -14,7 +14,6 @@ const CourseCard = ({
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow relative">
 
-      {/* Tombol Edit & Delete */}
       <div className="absolute top-2 right-2 flex gap-1 z-10">
         <button
           onClick={handleEdit}

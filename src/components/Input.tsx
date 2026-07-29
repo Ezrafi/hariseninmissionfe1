@@ -1,6 +1,6 @@
-import React from 'react';
+import type { InputProps } from '../types';
 
-const Input = ({ label, type = 'text', placeholder, name, required = false, icon, onIconClick }) => {
+const Input = ({ label, type = 'text', placeholder, name, required = false, value, onChange, icon, onIconClick }: InputProps) => {
   return (
     <div className="mb-4 text-left">
       <label className="block text-gray-700 text-sm mb-1.5 font-medium">
@@ -11,6 +11,8 @@ const Input = ({ label, type = 'text', placeholder, name, required = false, icon
           type={type}
           name={name}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-600 transition-all"
         />
         {icon && (

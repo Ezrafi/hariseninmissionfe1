@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import LoginForm from '../components/LoginForm';
+import useAuthStore from '../store/authStore';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login, loading, error, clearError, isAuthenticated } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLoginSubmit = (e) => {
+  useEffect(() => {
+    if (isAuthenticated) navigate('/', { replace: true });
+  }, [isAuthenticated, navigate]);
+
+  const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login submitted");
+    await login(email, password);
+    if (useAuthStore.getState().isAuthenticated) {
+      navigate('/', { replace: true });
+    }
   };
 
   return (
@@ -24,11 +35,22 @@ const Login = () => {
             </p>
           </div>
 
-          <LoginForm 
+          {error && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm text-center">
+              {error}
+            </div>
+          )}
+
+          <LoginForm
             onSubmit={handleLoginSubmit}
             onNavigateToRegister={() => navigate('/register')}
             showPassword={showPassword}
             setShowPassword={setShowPassword}
+            email={email}
+            onEmailChange={setEmail}
+            password={password}
+            onPasswordChange={setPassword}
+            loading={loading}
           />
         </div>
       </main>
