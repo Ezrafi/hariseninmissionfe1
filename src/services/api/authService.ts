@@ -8,8 +8,17 @@ const authApi = axios.create({
   timeout: 10000,
 });
 
-export const findUserByEmail = (email: string) =>
-  authApi.get<User[]>('/users', { params: { email } });
+export const findUserByEmail = async (email: string): Promise<{ data: User[] }> => {
+  try {
+    const res = await authApi.get<User[]>('/users', { params: { email } });
+    return res;
+  } catch (err) {
+    if (axios.isAxiosError(err) && err.response?.status === 404) {
+      return { data: [] };
+    }
+    throw err;
+  }
+};
 
 export const createUser = (data: RegisterData) => {
   const params = new URLSearchParams();
