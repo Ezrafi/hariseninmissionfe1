@@ -11,8 +11,15 @@ const authApi = axios.create({
 export const findUserByEmail = (email: string) =>
   authApi.get<User[]>('/users', { params: { email } });
 
-export const createUser = (data: RegisterData) =>
-  authApi.post<User>('/users', { ...data, createdAt: new Date().toISOString() });
+export const createUser = (data: RegisterData) => {
+  const params = new URLSearchParams();
+  params.append('name', data.name);
+  params.append('email', data.email);
+  params.append('password', data.password);
+  if (data.phone) params.append('phone', data.phone);
+  params.append('createdAt', new Date().toISOString());
+  return authApi.post<User>('/users', params);
+};
 
 export const getUserById = (id: string) =>
   authApi.get<User>(`/users/${id}`);
